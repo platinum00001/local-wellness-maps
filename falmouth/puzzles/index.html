@@ -1,1 +1,73 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Puzzles · Local Wellness Maps</title><link rel=stylesheet href="../../assets/style.css"></head><body><header><a class=brand href="../../">Local <span>Wellness Maps</span></a> <small>· Falmouth, MA</small><nav><a href="../../falmouth/">Town hub</a><a href="../../falmouth/map/">Maps</a><a href="../../falmouth/directory/">Directory</a><a href="../../falmouth/magazine/">Magazine</a><a href="../../falmouth/pets/">Pets</a><a href="../../falmouth/puzzles/">Puzzles</a><a href="../../falmouth/sports/">Sports</a><a href="../../falmouth/news/">Good News & Dates</a><a href="../../falmouth/visionaries/">Visionaries</a><a href="../../falmouth/artist-corner/">Artist Corner</a><a href="../../falmouth/arts-center/">Arts Center</a><a href="../../falmouth/vr/">VR Explore</a><a href="../../falmouth/vr-shops/">VR Shops</a></nav></header><main><h1>Puzzles</h1><p>Play a word game against friends — online version coming. Print puzzles run in each magazine issue.</p><div class="card stub"><h3>Word Friends (beta)</h3><p>Turn-based word game with town-themed bonus words. Game board launching soon.</p></div></main><footer>Local Wellness Maps — illustrated local wellness maps &amp; town magazine. Independent; not affiliated with any other map publisher.</footer></body></html>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Puzzles · Local Wellness Maps</title><link rel=stylesheet href="../../assets/style.css"></head><body><header><a class=brand href="../../">Local <span>Wellness Maps</span></a> <small>· Falmouth, MA</small><nav><a href="../../falmouth/">Town hub</a><a href="../../falmouth/map/">Maps</a><a href="../../falmouth/directory/">Directory</a><a href="../../falmouth/magazine/">Magazine</a><a href="../../falmouth/pets/">Pets</a><a href="../../falmouth/puzzles/">Puzzles</a><a href="../../falmouth/sports/">Sports</a><a href="../../falmouth/news/">Good News & Dates</a><a href="../../falmouth/visionaries/">Visionaries</a><a href="../../falmouth/artist-corner/">Artist Corner</a><a href="../../falmouth/arts-center/">Arts Center</a><a href="../../falmouth/vr/">VR Explore</a><a href="../../falmouth/vr-shops/">VR Shops</a></nav></header><main><h1>Word Friends <small style="font-size:.45em;color:#c8613b">BETA</small></h1>
+<p>A town word game from Local Wellness Maps. Spell words on the board; Falmouth words (HARBOR, BEACH, WOODS, LIGHTHOUSE…) earn a <b>+10 town bonus</b>. Play pass-and-play on one phone, or <b>invite a friend</b> and trade turns by link.</p>
+<style>
+#wf{max-width:520px;margin:0 auto}#bd{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;background:#14234a;padding:3px;border-radius:8px;touch-action:manipulation}
+.c{aspect-ratio:1;background:#fffdf8;border-radius:3px;display:flex;align-items:center;justify-content:center;font:700 clamp(10px,3.4vw,18px) Inter;cursor:pointer;position:relative;user-select:none}
+.c.DW{background:#f3c1b0}.c.TW{background:#c8613b;color:#fff}.c.DL{background:#cfe8ea}.c.TL{background:#2f8a96;color:#fff}.c.ST{background:#f0c47e}
+.c small{font-size:.5em;opacity:.8}.t{background:#f0c47e!important;color:#14234a!important;box-shadow:inset 0 -3px #0002}.t.new{background:#ffe08a!important;outline:2px solid #c8613b}
+.c sub{position:absolute;right:2px;bottom:0;font-size:.45em}#rk{display:flex;gap:6px;justify-content:center;margin:10px 0}.rt{width:42px;height:42px;font-size:20px;border-radius:6px;position:relative}.rt.sel{outline:3px solid #c8613b;transform:translateY(-4px)}
+#wf button{border:0;border-radius:999px;padding:9px 14px;font:600 14px Inter;background:#14234a;color:#fff;cursor:pointer;margin:3px}#wf button.alt{background:#e9e2d2;color:#14234a}
+#sc{display:flex;justify-content:space-between;font-weight:700;margin:8px 0}#sc .on{color:#c8613b}#msg{min-height:1.4em;font-size:.95em;color:#2f8a96}
+.inv{background:#f3ead8;border-radius:10px;padding:14px;margin:16px 0}.inv input{padding:9px;border-radius:8px;border:1px solid #ccc;width:100%;box-sizing:border-box;margin:4px 0}
+</style>
+<div id=wf><div id=sc></div><div id=bd></div><div id=rk></div><div id=msg></div>
+<div style="text-align:center"><button onclick="play()">✔ Play word</button><button class=alt onclick="recall()">↺ Recall</button><button class=alt onclick="shuffle()">⇄ Shuffle</button><button class=alt onclick="swap()">Swap tiles</button><button class=alt onclick="pass()">Pass</button><button class=alt onclick="if(confirm('Start a new game?'))newGame()">New game</button></div>
+<div id=share class=inv style="display:none"><b>Your move is in!</b> Send this turn to your friend:<br><input id=shl readonly onclick="this.select()"><button onclick="sendSMS()">💬 Text it</button><button onclick="sendMail()">✉️ Email it</button><button class=alt onclick="copyL()">Copy link</button></div>
+<div class=inv><h3 style="margin-top:0">📨 Invite a friend (beta)</h3><label>Your name<input id=me placeholder="e.g. James"></label><label>Friend’s name<input id=fn placeholder="e.g. Pat"></label><label>Friend’s email or mobile number<input id=fc placeholder="pat@example.com or 508-555-0100"></label><button onclick="invite()">Create invite</button><p id=invout class=sm></p>
+<p class=sm>How it works: we make a game link with a code (<code>?invite=…</code>). Your friend taps it — no app download — and the board opens ready. After each move, the game gives you a new link to text or email back. Games save on each device. A full account/notification server (push + automatic texts) comes later.</p></div>
+<h3>Rules (quick)</h3><ul><li>First word covers the ★ center. After that, words must connect.</li><li>Place tiles in one row or column; every word formed must be a real word.</li><li>DL/TL = double/triple letter, DW/TW = double/triple word. Use all 7 tiles: +35.</li><li>Town words +10: HARBOR, BEACH, WOODS, HOLE, CAPE, LIGHTHOUSE, MAIN, SHINING, SEA, POND, DOGS, YOGA, SPA, TRAIL, CLAM, OYSTER, FERRY, SAIL, DUNE, MAP.</li></ul>
+<p class=sm>Word Friends is an independent Local Wellness Maps game. Not affiliated with, endorsed by, or connected to Words With Friends or Zynga. Dictionary: ENABLE public-domain word list.</p></div>
+<h2>More puzzles</h2><div class="card stub"><h3>Print puzzles</h3><p>A crossword and word search run in each magazine issue.</p></div>
+<script>
+const N=11,V={A:1,B:4,C:4,D:2,E:1,F:4,G:3,H:3,I:1,J:10,K:5,L:2,M:4,N:2,O:1,P:4,Q:10,R:1,S:1,T:1,U:2,V:5,W:4,X:8,Y:3,Z:10,'?':0};
+const DIST='AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ';
+const TOWN=['HARBOR','BEACH','WOODS','HOLE','CAPE','LIGHTHOUSE','MAIN','SHINING','SEA','POND','DOGS','YOGA','SPA','TRAIL','CLAM','OYSTER','FERRY','SAIL','DUNE','MAP','FALMOUTH'];
+const PREM={};[[0,0,'TW'],[0,5,'TW'],[0,10,'TW'],[5,0,'TW'],[5,10,'TW'],[10,0,'TW'],[10,5,'TW'],[10,10,'TW'],[1,1,'DW'],[2,2,'DW'],[3,3,'DW'],[1,9,'DW'],[2,8,'DW'],[3,7,'DW'],[9,1,'DW'],[8,2,'DW'],[7,3,'DW'],[9,9,'DW'],[8,8,'DW'],[7,7,'DW'],[1,5,'TL'],[5,1,'TL'],[5,9,'TL'],[9,5,'TL'],[4,4,'DL'],[4,6,'DL'],[6,4,'DL'],[6,6,'DL'],[0,3,'DL'],[0,7,'DL'],[3,0,'DL'],[7,0,'DL'],[10,3,'DL'],[10,7,'DL'],[3,10,'DL'],[7,10,'DL']].forEach(([r,c,t])=>PREM[r*N+c]=t);
+let DICT=null;fetch('words.txt').then(r=>r.text()).then(t=>{DICT=new Set(t.split('\n').map(w=>w.trim().toUpperCase()));TOWN.forEach(w=>DICT.add(w))});
+let G,placed={},sel=null,myIdx=null;
+const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const dec=s=>JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/')))));
+function draw(n){let o='';while(n-->0&&G.bag.length){const i=Math.floor(Math.random()*G.bag.length);o+=G.bag[i];G.bag=G.bag.slice(0,i)+G.bag.slice(i+1)}return o}
+function newGame(a='Player 1',b='Player 2',code){G={v:1,code:code||Math.random().toString(36).slice(2,8).toUpperCase(),board:'.'.repeat(N*N),bag:DIST,names:[a,b],score:[0,0],turn:0,racks:['',''],log:[],passes:0};G.racks[0]=draw(7);G.racks[1]=draw(7);placed={};save();render()}
+function save(){localStorage.setItem('wf_game_'+G.code,JSON.stringify(G));localStorage.setItem('wf_last',G.code)}
+function rack(){let r=G.racks[G.turn].split('');Object.values(placed).forEach(ch=>{const i=r.indexOf(ch);if(i>=0)r.splice(i,1)});return r}
+function render(){const bd=document.getElementById('bd');bd.innerHTML='';for(let i=0;i<N*N;i++){const d=document.createElement('div');let ch=G.board[i]!='.'?G.board[i]:placed[i];d.className='c '+(ch?'t'+(placed[i]?' new':''):(i==60?'ST':PREM[i]||''));d.innerHTML=ch?ch+'<sub>'+V[ch]+'</sub>':(i==60?'★':(PREM[i]?'<small>'+PREM[i]+'</small>':''));d.onclick=()=>cell(i);bd.appendChild(d)}
+const rk=document.getElementById('rk');rk.innerHTML='';rack().forEach((ch,j)=>{const d=document.createElement('div');d.className='c t rt'+(sel===j?' sel':'');d.innerHTML=ch+'<sub>'+V[ch]+'</sub>';d.onclick=()=>{sel=sel===j?null:j;render()};rk.appendChild(d)});
+document.getElementById('sc').innerHTML=G.names.map((n,i)=>`<span class="${G.turn==i?'on':''}">${G.turn==i?'▶ ':''}${n}: ${G.score[i]}</span>`).join('')+`<span class=sm>Bag ${G.bag.length} · #${G.code}</span>`}
+function msg(t){document.getElementById('msg').textContent=t}
+function cell(i){if(placed[i]){delete placed[i];render();return}if(G.board[i]!='.'||sel===null)return;placed[i]=rack()[sel];sel=null;render()}
+function recall(){placed={};sel=null;render()}
+function shuffle(){const r=G.racks[G.turn].split('').sort(()=>Math.random()-.5).join('');G.racks[G.turn]=r;placed={};save();render()}
+const at=(b,r,c)=>r<0||c<0||r>=N||c>=N?'.':b[r*N+c];
+function wordAt(b,r,c,dr,dc){while(at(b,r-dr,c-dc)!='.'){r-=dr;c-=dc}let w=[];while(at(b,r,c)!='.'){w.push(r*N+c);r+=dr;c+=dc}return w}
+function play(){const ks=Object.keys(placed).map(Number);if(!ks.length)return msg('Place some tiles first.');if(!DICT)return msg('Dictionary still loading…');
+const rs=new Set(ks.map(k=>Math.floor(k/N))),cs=new Set(ks.map(k=>k%N));if(rs.size>1&&cs.size>1)return msg('Tiles must be in one row or column.');
+let b=G.board.split('');ks.forEach(k=>b[k]=placed[k]);const horiz=rs.size==1&&(ks.length>1||at(b,Math.floor(ks[0]/N),ks[0]%N-1)!='.'||at(b,Math.floor(ks[0]/N),ks[0]%N+1)!='.');
+const [dr,dc]=horiz?[0,1]:[1,0];const k0=Math.min(...ks);const main=wordAt(b,Math.floor(k0/N),k0%N,dr,dc);if(!ks.every(k=>main.includes(k)))return msg('Tiles must be connected with no gaps.');
+const first=!/[A-Z]/.test(G.board);if(first&&!ks.includes(60))return msg('First word must cover the ★ center.');
+const words=[];if(main.length>1)words.push(main);ks.forEach(k=>{const w=wordAt(b,Math.floor(k/N),k%N,dc,dr);if(w.length>1)words.push(w)});
+if(!words.length)return msg('Make a word of at least 2 letters.');if(!first&&!words.some(w=>w.some(k=>G.board[k]!='.')))return msg('Your word must connect to tiles on the board.');
+let total=0,bad=[],names=[];for(const w of words){const s=w.map(k=>b[k]).join('');if(!DICT.has(s))bad.push(s);let sum=0,mul=1;w.forEach(k=>{let v=V[b[k]];if(placed[k]){const p=PREM[k];if(p=='DL')v*=2;if(p=='TL')v*=3;if(p=='DW')mul*=2;if(p=='TW')mul*=3}sum+=v});let pts=sum*mul;if(TOWN.includes(s))pts+=10;total+=pts;names.push(s+' '+pts)}
+if(bad.length)return msg('Not in the word list: '+bad.join(', '));if(ks.length==7)total+=35;
+G.board=b.join('');G.racks[G.turn]=rack().join('');G.racks[G.turn]+=draw(7-G.racks[G.turn].length);G.score[G.turn]+=total;G.log.push(G.names[G.turn]+': '+names.join(', '));G.passes=0;placed={};
+endTurn(names.join(' · ')+' → +'+total)}
+function endTurn(t){const p=G.turn;if(!G.racks[p]&&!G.bag.length){msg(t+' — Game over! '+G.names[0]+' '+G.score[0]+', '+G.names[1]+' '+G.score[1]);G.over=1}else if(G.passes>=4){msg('Game over after 4 passes.');G.over=1}else msg(t);
+G.turn=1-G.turn;save();render();if(myIdx!==null)showShare()}
+function swap(){if(G.bag.length<7)return msg('Not enough tiles left to swap.');const old=G.racks[G.turn];G.racks[G.turn]=draw(7);G.bag+=old;placed={};G.passes++;endTurn('Swapped tiles.')}
+function pass(){placed={};G.passes++;endTurn('Passed.')}
+function link(extra){return location.origin+location.pathname+'?'+extra}
+function turnLink(){return link('invite='+G.code+'&g='+enc(G))}
+function showShare(){const s=document.getElementById('share');s.style.display='block';document.getElementById('shl').value=turnLink()}
+function inviteText(){return `${G.names[0]} challenged you to Word Friends — the Falmouth word game from Local Wellness Maps. Tap to play (no download): ${turnLink()}`}
+function sendSMS(to){location.href='sms:'+(to||'')+'?&body='+encodeURIComponent(G.over?'Final: '+G.score.join('-'):(G.names[G.turn==1?0:1]+' played — your turn in Word Friends: '+turnLink()))}
+function sendMail(to){location.href='mailto:'+(to||'')+'?subject='+encodeURIComponent('Your turn in Word Friends')+'&body='+encodeURIComponent('Your move! '+turnLink())}
+function copyL(){navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('shl').value);msg('Link copied.')}
+function invite(){const me=document.getElementById('me').value.trim()||'Player 1',fn=document.getElementById('fn').value.trim()||'Friend',c=document.getElementById('fc').value.trim();
+newGame(me,fn);myIdx=0;const inv=JSON.parse(localStorage.getItem('wf_invites')||'[]');inv.push({code:G.code,to:c,friend:fn,at:Date.now()});localStorage.setItem('wf_invites',JSON.stringify(inv));
+const out=document.getElementById('invout');out.innerHTML='Game <b>#'+G.code+'</b> created. Take your first turn, or send the invite now: ';
+const t=inviteText();const isMail=c.includes('@');const a=document.createElement('a');a.className='go';
+a.href=isMail?'mailto:'+c+'?subject='+encodeURIComponent('Play Word Friends with me')+'&body='+encodeURIComponent(t):'sms:'+c.replace(/[^\d+]/g,'')+'?&body='+encodeURIComponent(t);a.textContent=isMail?'✉️ Email invite':'💬 Text invite';out.appendChild(a);showShare();msg('You go first, '+me+'!')}
+const q=new URLSearchParams(location.search);
+if(q.get('g')){try{const inc=dec(q.get('g'));const loc=JSON.parse(localStorage.getItem('wf_game_'+inc.code)||'null');G=(loc&&loc.log.length>inc.log.length)?loc:inc;myIdx=G.turn;placed={};save();render();msg(`Game #${G.code}: ${G.names[G.turn]}, it’s your turn! (${G.names.join(' vs ')})`)}catch(e){newGame()}}
+else{const l=localStorage.getItem('wf_last');G=l&&JSON.parse(localStorage.getItem('wf_game_'+l)||'null');if(G)render();else newGame()}
+</script></main><footer>Local Wellness Maps — illustrated local wellness maps &amp; town magazine. Independent; not affiliated with any other map publisher.</footer></body></html>
