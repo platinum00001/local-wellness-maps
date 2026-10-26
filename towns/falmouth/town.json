@@ -1,0 +1,33 @@
+{
+ "slug": "falmouth",
+ "name": "Falmouth",
+ "state": "MA",
+ "status": "live",
+ "maps": [
+  "assets/maps/side1-downtown-17x11.jpg",
+  "assets/maps/side2-woodshole-17x11.jpg"
+ ],
+ "directory_categories": [
+  "fitness-yoga-pilates",
+  "beauty-skin-tanning",
+  "nutrition",
+  "spa-recovery",
+  "dental",
+  "getting-around",
+  "hotels",
+  "groceries"
+ ],
+ "sections": [
+  "map",
+  "directory",
+  "magazine",
+  "pets",
+  "puzzles",
+  "sports",
+  "news",
+  "visionaries",
+  "artist-corner",
+  "vr",
+  "vr-shops"
+ ]
+}
