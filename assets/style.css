@@ -1,11 +1,23 @@
-:root{--cream:#f7f0e1;--navy:#1d2d55;--ink:#2b2a28;--rust:#c0603a;--sea:#3f8f9b;--paper:#fffaf0}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.55 Georgia,serif}
-header{background:var(--navy);color:var(--paper);padding:14px 18px}header a{color:#f2c98a;text-decoration:none}
-.brand{font:700 26px/1 Georgia;letter-spacing:.5px}.brand span{color:#f2c98a}
-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}nav a{background:#ffffff1a;padding:5px 10px;border-radius:20px;font:14px system-ui}
-main{max-width:1100px;margin:auto;padding:18px}h1,h2{color:var(--navy);font-family:Georgia}h1{font-size:32px;margin:.3em 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.card{background:var(--paper);border:2px solid var(--navy);border-radius:14px;padding:14px;box-shadow:4px 4px 0 var(--rust);color:inherit;text-decoration:none;display:block}
-.card img{width:100%;border-radius:8px}.tag{display:inline-block;font:700 12px system-ui;background:var(--sea);color:#fff;padding:2px 8px;border-radius:10px}
-.soon{opacity:.6}.cta{display:inline-block;background:var(--rust);color:#fff;padding:9px 16px;border-radius:24px;text-decoration:none;font:700 15px system-ui;margin:6px 0}
-.stub{border-style:dashed}footer{text-align:center;font:13px system-ui;padding:24px;opacity:.7}
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;700&display=swap');
+:root{--cream:#f7f1e6;--navy:#14234a;--ink:#1f2430;--rust:#c8613b;--sea:#2f8a96;--paper:#fffdf8;--gold:#f0c47e;--line:#e6dccb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+header{position:sticky;top:0;z-index:20;background:rgba(20,35,74,.94);backdrop-filter:blur(10px);color:var(--paper);padding:14px clamp(16px,4vw,40px);display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+header a{color:var(--paper);text-decoration:none}header small{opacity:.7}
+.brand{font:700 22px/1 Fraunces,Georgia,serif;letter-spacing:-.3px}.brand span{color:var(--gold)}
+nav{display:flex;flex-wrap:wrap;gap:4px;margin-left:auto}nav a{padding:6px 11px;border-radius:999px;font:500 13px Inter,sans-serif;opacity:.85;transition:.2s}nav a:hover{background:#ffffff1f;opacity:1}
+main{max-width:1160px;margin:auto;padding:clamp(20px,4vw,48px) clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;color:var(--navy);letter-spacing:-.5px;line-height:1.15}
+h1{font-size:clamp(34px,5vw,58px);margin:.2em 0 .3em}h2{font-size:clamp(24px,3vw,32px);margin:1.6em 0 .6em}h3{font-size:20px;margin:.4em 0}
+.hero{background:linear-gradient(135deg,var(--navy),#22407a 60%,var(--sea));color:var(--paper);border-radius:28px;padding:clamp(28px,6vw,72px);margin-bottom:32px;box-shadow:0 30px 60px -30px #14234a99}
+.hero h1{color:var(--paper)}.hero p{max-width:640px;font-size:18px;opacity:.9}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px;color:inherit;text-decoration:none;display:block;box-shadow:0 1px 2px #0000000a;transition:transform .2s,box-shadow .2s}
+a.card:hover{transform:translateY(-3px);box-shadow:0 18px 36px -18px #14234a55}
+.card img{width:100%;border-radius:12px}
+.tag{display:inline-block;font:700 11px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:#2f8a961a;color:var(--sea);padding:4px 10px;border-radius:999px}
+.tag.free{background:#c8613b1a;color:var(--rust)}
+.soon{opacity:.6}.cta{display:inline-block;background:var(--rust);color:#fff;padding:12px 22px;border-radius:999px;text-decoration:none;font:700 15px Inter,sans-serif;margin:6px 6px 6px 0;transition:.2s}.cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.cta.ghost{background:transparent;border:1.5px solid currentColor;color:inherit}
+.stub{border-style:dashed}footer{text-align:center;font:13px Inter,sans-serif;padding:40px 20px;opacity:.65;border-top:1px solid var(--line)}
+.feed{border-left:3px solid var(--rust);padding:6px 0 6px 16px;margin:10px 0}

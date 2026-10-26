@@ -15,7 +15,8 @@
   "dental",
   "getting-around",
   "hotels",
-  "groceries"
+  "groceries",
+  "arts-center"
  ],
  "sections": [
   "map",
@@ -29,5 +30,15 @@
   "artist-corner",
   "vr",
   "vr-shops"
+ ],
+ "brand": "Local Wellness Maps",
+ "free_featured": [
+  {
+   "name": "Falmouth Art Center",
+   "address": "137 Gifford St",
+   "phone": "508-540-3304",
+   "url": "https://falmouthart.org",
+   "page": "falmouth/arts-center/"
+  }
  ]
 }
