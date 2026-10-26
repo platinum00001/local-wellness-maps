@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin · Swap ad graphics · Local Wellness Maps</title><meta name="robots" content="noindex"><link rel="stylesheet" href="editor-style.css">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script></head>
+<body><header><a href="../">← Falmouth hub</a> · <a href="?map=side1-downtown-17x11">Side 1 Downtown</a> · <a href="?map=side2-woodshole-17x11">Side 2 Main St/Woods Hole</a> · <a href="https://platinum00001.github.io/health-wellness-maps/">original editor</a> <h1 id="title"></h1><p style="background:#fff3cd;color:#5a4200;padding:8px 12px;border-radius:8px;font-size:14px"><b>Admin · swap ad graphics.</b> Click a company square (T1–T5, B1–B5, L1–L5, R1–R5) or drag an image onto it. Swaps save only in this browser (preview). For the permanent print map: export the zip, drop the file into <code>deliverables/sample_ads</code>, and re-render the 17×11 sides.</p>
+<div class="bar"><label><input type="checkbox" id="qr"> Show QR corner slots</label>
+<label>Fit: <select id="fit"><option value="cover">Fill (crop)</option><option value="contain">Fit (no crop)</option></select></label>
+<button id="png">Download PNG</button><button id="zip">Download ad files (zip)</button><button id="reset" class="danger">Reset all</button></div>
+<p class="hint">Click a slot → choose image. Or drag an image file onto a slot. Work is saved in this browser automatically.</p></header>
+<div id="wrap"><img id="map"><div id="slots"></div></div>
+<input type="file" id="file" accept="image/*" hidden>
+<script src="editor.js"></script></body></html>
